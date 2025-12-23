@@ -15,6 +15,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css" type="text/css"/>
     
     <script>
+        // 1. 페이지 로드 시 사용자 설정 또는 시스템 설정 확인하여 다크모드 적용
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        tailwind.config = {
+            darkMode: 'class', // 2. 클래스 기반 다크모드 활성화
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-black': '#0a0a0a',
+                        'dark-gray': '#1a1a1a', 
+                        'brand-primary': '#e60013', 
+                    },
+                    fontFamily: {
+                        sans: ['Paperlogy', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+        // 3. 토글 함수
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
         tailwind.config = {
             theme: {
                 extend: {
@@ -181,4 +214,5 @@
     </script>
 </body>
 </html>
+
 
