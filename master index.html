@@ -1,218 +1,355 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>마스터 템플릿</title>
-    <meta property="og:title" content="차원이 다른 AI툴 - 마케팅자동화요격기">
-    <meta property="og:description" content="노력만으로 경쟁하는 시대는 끝났습니다. 사장님이 잠든 시간에도 주방에 있는 시간에도 AI 직원은 사장님의 매출을 위해 24시간 쉬지 않고 요격합니다. ">
-    <meta property="og:image" content="./images/thumbnail.jpg">
+    <title>[이 랜딩페이지의 타이틀]</title>
+    <meta property="og:title" content="[이 랜딩페이지의 타이틀]">
+    <meta property="og:description" content="[이 랜딩페이지의 설명을 작성합니다.]">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Paperlogy 폰트 로드 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <script>
-        // 1. 페이지 로드 시 사용자 설정 또는 시스템 설정 확인하여 다크모드 적용
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-
         tailwind.config = {
-            darkMode: 'class', // 2. 클래스 기반 다크모드 활성화
+            darkMode: 'class', // 다크모드 클래스 기반 설정
             theme: {
                 extend: {
                     colors: {
                         'royal-black': '#0a0a0a',
-                        'dark-gray': '#1a1a1a', 
-                        'brand-primary': '#e60013', 
-                    },
-                    fontFamily: {
-                        sans: ['Paperlogy', 'sans-serif'],
-                    }
-                }
-            }
-        }
-
-        // 3. 토글 함수
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        }
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        // [통일] 배경색 (브랜드 무드 유지)
-                        'royal-black': '#0a0a0a',
+                        'primary-color': '#3b82f6',   <!-- 메인컬러 -->
+                        'secondary-color': '#FACC15', <!-- 서브컬러 -->
                         'dark-gray': '#1a1a1a',
                         'off-white': '#F9FAFB',
-                        
-                        // [★ STEP 2: 아이덴티티] 시리즈별 고유 컬러 변경 (여기만 바꾸면 전체 적용)
-                        // 예: 파랑(#3b82f6), 빨강(#ef4444), 보라(#8b5cf6), 주황(#f97316)
-                        'brand-primary': '#3b82f6',  
                     },
                     fontFamily: {
                         sans: ['"Noto Sans KR"', 'sans-serif'],
                         serif: ['"Noto Serif KR"', 'serif'],
                     },
                     boxShadow: {
-                        'glow': '0 0 20px rgba(255, 255, 255, 0.1)', 
+                        'glow': '0 0 20px rgba(59, 130, 246, 0.4)',
                     }
                 }
             }
         }
     </script>
+    
     <style>
-        /* [폰트 적용] */
-        @font-face {
-            font-family: 'Simple';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-display: swap;
+        /* [공통 설정] 테마 전환 및 가독성 최적화 */
+        html { 
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-
-        /* [모바일 최적화] 한국어 줄바꿈 방지 */
-        body {
-            word-break: keep-all; 
-            overflow-x: hidden;
-            /* 기본 폰트 Paperlogy 적용 및 기본 굵기 상향 (400 -> 500) */
-            font-family: 'Paperlogy', sans-serif !important;
-            font-weight: 500; 
-        }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body { background-color: #0a0a0a; color: white; word-break: keep-all; overflow-x: hidden; }
-        @media (min-width: 1024px) { html { font-size: 20px; } }
-        * { -webkit-tap-highlight-color: transparent; }
         
-        .sticky-header { position: fixed; top: 0; width: 100%; z-index: 50; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        img { width: 100%; height: auto; object-fit: cover; }
+        * {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body { 
+            word-break: keep-all;
+            overflow-x: hidden;
+        }
+
+        /* [수정 1] PC 화면에서 기본 폰트 사이즈 확대 */
+        @media (min-width: 1024px) {
+            html {
+                font-size: 20px; /* 기본 16px -> 20px로 확대 */
+            }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .brand-highlight {
+            color: #FACC15;
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+        }
+
+        /* [수정 2] 모바일 터치 타겟 크기 보장 */
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* [수정 3] 이미지 비율 유지 및 최적화 */
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* 메뉴판 비교 애니메이션 */
+        .menu-comparison {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media (hover: hover) {
+            .menu-comparison .after-overlay {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                transition: opacity 0.6s ease-in-out;
+                background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), transparent);
+            }
+            .menu-comparison:hover .after-overlay {
+                opacity: 1;
+            }
+            .menu-comparison .after-image {
+                transition: transform 0.6s ease-in-out;
+            }
+            .menu-comparison:hover .after-image {
+                transform: scale(1.05);
+            }
+        }
+        
+        @media (hover: none) {
+            .menu-comparison:active .after-overlay { opacity: 1; }
+            .menu-comparison:active .after-image { transform: scale(1.05); }
+        }
+
+        /* 매출 이미지 애니메이션 - GPU 가속 */
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 30px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .revenue-image {
+            animation: slideUpFade 0.6s ease-out forwards;
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        .revenue-image:nth-child(1) { animation-delay: 0.1s; }
+        .revenue-image:nth-child(2) { animation-delay: 0.2s; }
+        .revenue-image:nth-child(3) { animation-delay: 0.3s; }
+        .revenue-image:nth-child(4) { animation-delay: 0.4s; }
+        .revenue-image:nth-child(5) { animation-delay: 0.5s; }
+
+        /* 모바일 헤더 고정 최적화 */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* 모바일 반응형 텍스트 (타이틀 폰트 크기 자동 조절) */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            .section-title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+            }
+        }
+
+        /* FAQ 애니메이션 */
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 다크모드 토글 버튼 스타일 */
+        #theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
+
+    <!-- 페이지 로드 시 다크모드 초기화 스크립트 -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
-<body class="antialiased">
 
-    <div class="sticky-header bg-royal-black/90 border-b border-white/10">
+<body class="antialiased bg-white dark:bg-royal-black text-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- Sticky Header -->
+    <header class="sticky-header bg-white/80 dark:bg-royal-black/90 border-b border-gray-200 dark:border-white/10">
         <div class="container mx-auto px-4 sm:px-6 h-14 sm:h-16 flex justify-between items-center">
-            <div class="text-lg sm:text-xl font-black tracking-tighter uppercase text-white cursor-pointer" onclick="location.href='#'">
-                <span class="text-brand-primary">MA</span>JAYO 
-                <span class="text-xs font-medium ml-1 text-gray-400">| Template</span>
+            <div class="text-lg sm:text-xl font-black tracking-tighter uppercase">
+                <span class="text-primary-color">[메인타이틀]</span><span class="text-gray-900 dark:text-white">[메인타이틀]</span>
             </div>
-            <button onclick="document.getElementById('enrollment').scrollIntoView({behavior:'smooth'})" 
-                    class="bg-brand-primary hover:opacity-90 text-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-full transition-all shadow-glow">
-                수강 신청
-            </button>
-        </div>
-    </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- 다크모드 토글 버튼 -->
+                <button id="theme-toggle-btn" class="bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-secondary-color hover:scale-110 transition-transform">
+                    <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-xl"></i>
+                </button>
 
-    <section class="pt-24 sm:pt-32 pb-16 px-4 sm:px-6 bg-royal-black text-center">
-        <div class="container mx-auto max-w-4xl" data-aos="fade-up">
-            <p class="text-gray-400 mb-4 text-lg">새로운 시리즈의 시작</p>
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black leading-tight mb-8">
-                시리즈의 메인 카피를<br>
-                <span class="text-brand-primary">입력해주세요</span>
-            </h1>
-            <p class="text-xl text-gray-300">여기에 서브 카피나 설명을 작성합니다.</p>
-        </div>
-    </section>
-
-    <section class="py-16 sm:py-24 bg-white text-royal-black">
-        <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
-            <div class="flex flex-col lg:flex-row gap-8 sm:gap-12 items-center">
-                <div class="lg:w-1/3 text-center lg:text-left w-full" data-aos="fade-right">
-                    <div class="mb-6 sm:mb-8">
-                        <div class="w-40 h-40 sm:w-48 sm:h-48 mx-auto lg:mx-0 rounded-full overflow-hidden border-4 border-royal-black shadow-xl">
-                            <img src="./images/INSTRUCTOR_PROFILE_IMAGE.jpg" alt="김유진 강사">
-                        </div>
-                    </div>
-                    <div class="inline-block border-2 border-royal-black p-2 mb-4">
-                        <span class="block bg-royal-black text-white px-3 py-1 font-bold text-xs uppercase">The Instructor</span>
-                    </div>
-                    <h2 class="text-4xl sm:text-5xl font-black mb-2">김유진</h2>
-                    <p class="text-lg font-bold text-gray-600 mb-4">자영업 1타 강사 / 김유진 아카데미 대표</p>
-                    <div class="space-y-2 border-t border-gray-200 pt-4 font-medium">
-                        <p>MBC PD 출신</p>
-                        <p class="text-brand-primary font-bold">3,000개 브랜드 매니지먼트</p>
-                        <p class="text-brand-primary font-bold">연간 총매출 1조 8천억 원 창출</p>
-                    </div>
-                </div>
-                <div class="lg:w-2/3 w-full" data-aos="fade-left">
-                    <div class="bg-off-white p-8 rounded-3xl shadow-lg text-center relative">
-                        <i class="fas fa-quote-left text-3xl text-gray-300 absolute top-6 left-6"></i>
-                        <blockquote class="text-xl md:text-2xl font-serif font-medium leading-relaxed text-gray-800 py-4">
-                            "이곳에 시리즈를 관통하는<br>강사님의 핵심 철학을 적어주세요."
-                        </blockquote>
-                    </div>
-                </div>
+                <button onclick="document.getElementById('enrollment').scrollIntoView({behavior:'smooth'})" 
+                        class="bg-primary-color hover:bg-blue-600 active:bg-blue-700 text-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-full transition-all">
+                    수강 신청
+                </button>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="enrollment" class="py-24 px-6 bg-gradient-to-t from-gray-900 to-royal-black">
-        <div class="container mx-auto max-w-4xl">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <p class="text-brand-primary font-bold tracking-widest uppercase mb-2">RECRUITING</p>
-                <h2 class="text-3xl md:text-5xl font-black">수강생 모집 안내</h2>
-            </div>
-            <div class="bg-dark-gray rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl" data-aos="fade-up">
-                <div class="grid md:grid-cols-2 gap-10">
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-brand-primary font-bold mb-1"><i class="far fa-calendar-alt mr-2"></i> 교육 기간</p>
-                            <p class="text-white text-lg font-bold">202X. MM. DD ~ MM. DD</p>
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Section 13: Enrollment -->
+        <section id="enrollment" class="py-24 px-6 bg-off-white dark:bg-gradient-to-t dark:from-gray-900 dark:to-royal-black">
+            <div class="container mx-auto max-w-4xl">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <p class="text-primary-color font-bold tracking-widest uppercase mb-2">[서브 타이틀]</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white section-title">[메인타이틀]수강안내</h2>
+                </div>
+
+                <div class="bg-white dark:bg-dark-gray rounded-3xl p-8 md:p-12 border border-gray-200 dark:border-white/10 shadow-xl dark:shadow-2xl" data-aos="fade-up">
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <!-- Left Side: Course Info -->
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-primary-color font-bold mb-1"><i class="far fa-calendar-alt mr-2"></i> 교육 기간</p>
+                                <p class="text-gray-900 dark:text-white text-lg font-bold">1월 27일 (화) ~ 3월 17일 (화)</p>
+                                <p class="text-red-500 text-sm font-bold"><!-- 휴강이 있을 경우 작성 --></p>
+                            </div>
+                            <div>
+                                <p class="text-primary-color font-bold mb-1"><i class="far fa-clock mr-2"></i> 교육 시간</p>
+                                <p class="text-gray-900 dark:text-white text-lg font-bold">매주 화요일 15:00 ~ 17:30 (2시간 30분)</p>
+                            </div>
+                            <div>
+                                <p class="text-primary-color font-bold mb-1"><i class="fas fa-won-sign mr-2"></i> 교육비</p>
+                                <p class="text-gray-900 dark:text-white text-lg font-bold">1,960,000원</p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">※ 등록마감일 : 01월 23일 (금)</p>
+                                <p class="text-gray-400 dark:text-gray-500 text-xs">※ 계좌 이체시 계산서 발급, 카드 결제시 할부 가능</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-brand-primary font-bold mb-1"><i class="far fa-clock mr-2"></i> 교육 시간</p>
-                            <p class="text-white text-lg font-bold">매주 O요일 00:00 ~ 00:00</p>
-                        </div>
-                        <div>
-                            <p class="text-brand-primary font-bold mb-1"><i class="fas fa-won-sign mr-2"></i> 교육비</p>
-                            <p class="text-white text-lg font-bold">0,000,000원</p>
+
+                        <!-- Right Side: Location & Map -->
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-primary-color font-bold mb-1"><i class="fas fa-map-marker-alt mr-2"></i> 교육 장소</p>
+                                <p class="text-gray-900 dark:text-white font-bold">서울 강남구 삼성로 104길 17 대모빌딩 4층 김유진아카데미</p>
+                                <ul class="text-sm text-gray-500 dark:text-gray-400 mt-2 space-y-1">
+                                    <li><span class="bg-green-700 text-white text-xs px-1.5 py-0.5 rounded mr-1">2호선</span> 삼성역 5번 출구 도보 13분</li>
+                                    <li><span class="bg-yellow-600 text-white text-xs px-1.5 py-0.5 rounded mr-1">9호선</span> 삼성중앙역 5번 출구 도보 5분</li>
+                                </ul>
+                            </div>
+                            <div class="w-full h-48 rounded-xl overflow-hidden shadow-inner border border-gray-200 dark:border-gray-700">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.8!2d127.05!3d37.51!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca46bc9262e3d%3A0xc6657c793f773491!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDsgrzshLHroZwgMTA06ri4IDE3!5e0!3m2!1sko!2skr!4v1700000000000"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy"
+                                    class="grayscale dark:opacity-80 hover:grayscale-0 transition-all duration-500">
+                                </iframe>
+                            </div>
                         </div>
                     </div>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-brand-primary font-bold mb-1"><i class="fas fa-map-marker-alt mr-2"></i> 교육 장소</p>
-                            <p class="text-white font-bold">서울 강남구 삼성로 104길 17</p>
-                        </div>
-                        <div class="w-full h-48 rounded-lg overflow-hidden bg-gray-800">
-                             <div class="w-full h-full flex items-center justify-center text-gray-500 bg-gray-900">MAP AREA</div>
-                        </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-100 dark:border-gray-700 space-y-2 text-sm sm:text-base">
+                        <p class="text-gray-600 dark:text-gray-300"><i class="fas fa-gift text-primary-color mr-2"></i> 추천인, 등록인 모두 5% 적립! (김유진 아카데미 전 수업 사용 가능)</p>
                     </div>
                 </div>
-                <div class="mt-8 pt-8 border-t border-gray-700 text-sm">
-                    <p class="font-bold text-white"><i class="fas fa-exclamation-circle text-brand-primary mr-2"></i> 준비물: 노트북 지참 필수</p>
+
+                <!-- CTA Section -->
+                <div class="mt-16 flex flex-col items-center space-y-8">
+                    <a href="https://naver.me/517TkIDA" target="_blank" class="inline-block text-center w-full md:w-auto bg-primary-color hover:bg-blue-600 text-white font-black py-5 px-12 md:px-20 rounded-full text-2xl shadow-glow transition-all transform hover:scale-105 animate-pulse no-underline">
+                        마자요 6기 신청하기
+                    </a>
+                    
+                    <div class="flex flex-col items-center gap-6 max-w-md mx-auto border-t border-gray-200 dark:border-white/10 pt-12 w-full">
+                        <a href="https://kyjacademy.github.io/offline_course_list" target="_blank" class="w-full px-8 py-4 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:text-primary-color hover:border-primary-color dark:hover:text-white dark:hover:border-white transition-all font-bold flex items-center justify-center gap-3 group">
+                            <i class="fas fa-book-open group-hover:scale-110 transition-transform"></i>
+                            다른 강의 둘러보기
+                        </a>
+                    
+                        <a href="https://m.site.naver.com/1zqiL" target="_blank" class="w-full rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary-color transition-all overflow-hidden group bg-white dark:bg-transparent">
+                            <div class="flex items-center gap-4 p-4">
+                                <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                                    <img src="https://via.placeholder.com/150" alt="올인원 패키지" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                                </div>
+                                <div class="flex-1 text-left">
+                                    <p class="text-gray-900 dark:text-white font-bold group-hover:text-primary-color transition-colors">올인원 패키지</p>
+                                    <p class="text-sm text-gray-500">모든 강의를 한 번에 수강하기</p>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400 group-hover:text-primary-color transition-colors"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="mt-12 text-center">
-                <a href="#" class="inline-block w-full md:w-auto bg-brand-primary hover:opacity-90 text-white font-black py-5 px-12 rounded-full text-2xl shadow-glow transition-all transform hover:scale-105 animate-pulse">
-                    신청하기
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer class="bg-black py-10 text-center border-t border-gray-900">
-        <div class="container mx-auto px-6">
-            <p class="text-gray-500 text-sm mb-2">상호명: 김유진아카데미 | 대표: 김유진</p>
-            <p class="text-gray-500 text-sm mb-6">주소: 서울특별시 강남구 삼성로 104길 17</p>
-            <p class="text-gray-600 text-xs">Copyright © 김유진 아카데미. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-black py-12 text-center text-gray-500 dark:text-gray-600 text-sm border-t border-gray-200 dark:border-gray-900">
+        <div class="container mx-auto px-4">
+            <p class="mb-2">김유진 아카데미 | 서울시 강남구 삼성로 104길 17 대모빌딩 4층</p>
+            <p>Copyright © KYJ ACADEMY. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // AOS 초기화
+        const isMobileScreen = window.innerWidth < 768;
+        AOS.init({
+            duration: isMobileScreen ? 500 : 800,
+            once: true,
+            disable: window.innerWidth < 480
+        });
+
+        // 다크모드 수동 제어 로직
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        }
+
+        updateIcons();
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            updateIcons();
+        });
     </script>
 </body>
 </html>
-
-
